@@ -19,7 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         already_have_account_text_view.setOnClickListener {
-            Log.d("RegisterActivityd", "Try to show login activity")
+            Log.d("RegisterActivityD", "Try to show login activity")
 
             // launch the login activity somehow
             val intent = Intent(this, LoginActivity::class.java)
@@ -36,8 +36,8 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        Log.d("RegisterActivityd", "Email is: " + email)
-        Log.d("RegisterActivityd", "Password: $password")
+        Log.d("RegisterActivityD", "Email is: " + email)
+        Log.d("RegisterActivityD", "Password: $password")
 
         //Firebase
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -45,11 +45,11 @@ class RegisterActivity : AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
                 //else if successful
-                Log.d("RegisterActivityd", "Successfully created user with uid: ${it.result?.user?.uid}")
+                Log.d("RegisterActivityD", "Successfully created user with uid: ${it.result?.user?.uid}")
                 saveUserToFirebaseDatabase()
             }
             .addOnFailureListener {
-                Log.d("RegisterActivityd", "Failed to create user: ${it.message}")
+                Log.d("RegisterActivityD", "Failed to create user: ${it.message}")
                 Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
@@ -57,32 +57,36 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveUserToFirebaseDatabase () {
         //create value with user unique ID
         val uid = FirebaseAuth.getInstance().uid ?:""
-        Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, uid = $uid")
+        Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, uid = $uid")
 
         //create value with path where to save new user in database
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, ref = $ref")
+        Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, ref = $ref")
 
         //create value with Timestamp of creation a new current user
         //val userCreationTimeStamp = FirebaseAuth.getInstance().currentUser?.metadata?.creationTimestamp
-        //Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, userCreationTimeStamp = $userCreationTimeStamp")
+        //Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, userCreationTimeStamp = $userCreationTimeStamp")
 
         //transform Timestamp to Date format
         //val userCreationDate = Date(userCreationTimeStamp!!).toString()
-        //Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, userCreationTimeStamp = $userCreationDate")
+        //Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, userCreationTimeStamp = $userCreationDate")
         //val userCreationDate = SimpleDateFormat("MM/dd/yyyy").format(Date(userCreationTimeStamp!!))
-        //Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, userCreationDate = $userCreationDate")
+        //Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, userCreationDate = $userCreationDate")
 
         val user = User(usename_edittext_register.text.toString(), email_edittext_register.text.toString())
-        Log.d("RegisterActivityd", "saveUserToFirebaseDatabase func, user = $user, username = ${user.username}, email = ${user.email}")
+        Log.d("RegisterActivityD", "saveUserToFirebaseDatabase func, user = $user, username = ${user.username}, email = ${user.email}")
 
         ref.setValue(user)
             .addOnSuccessListener {
-                Log.d("RegisterActivityd", "Saved user to Firebase Database")
+                Log.d("RegisterActivityD", "Saved user to Firebase Database")
+
+                val intent = Intent(this, LatestMessagesActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
             .addOnFailureListener {
-                Log.d("RegisterActivityd","NOT saved user to Firebase Database")
-                Log.d("RegisterActivityd", "Failed to save user to database: ${it.message}")
+                Log.d("RegisterActivityD","NOT saved user to Firebase Database")
+                Log.d("RegisterActivityD", "Failed to save user to database: ${it.message}")
             }
 
 
