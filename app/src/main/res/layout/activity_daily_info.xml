@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DailyInfoActivity">
+
+    <TextView
+        android:id="@+id/text_money_to_spend_today_in_plan_plaintext_activity_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Money to spend today in plan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_money_to_spend_today_updated_plaintext_activity_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Money to spend today updated"
+        app:layout_constraintEnd_toEndOf="@+id/number_money_to_spend_today_planned_plaintext_to_edit_activity_daily"
+        app:layout_constraintStart_toStartOf="@+id/number_money_to_spend_today_planned_plaintext_to_edit_activity_daily"
+        app:layout_constraintTop_toBottomOf="@+id/number_money_to_spend_today_planned_plaintext_to_edit_activity_daily" />
+
+    <TextView
+        android:id="@+id/number_money_to_spend_today_planned_plaintext_to_edit_activity_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/text_money_to_spend_today_in_plan_plaintext_activity_daily"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/text_money_to_spend_today_in_plan_plaintext_activity_daily"
+        app:layout_constraintTop_toBottomOf="@+id/text_money_to_spend_today_in_plan_plaintext_activity_daily" />
+
+    <TextView
+        android:id="@+id/number_money_to_spend_today_calculated_plaintext_to_edit_activity_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/text_money_to_spend_today_updated_plaintext_activity_daily"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/text_money_to_spend_today_updated_plaintext_activity_daily"
+        app:layout_constraintTop_toBottomOf="@+id/text_money_to_spend_today_updated_plaintext_activity_daily" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="New Income/Expense"
+        app:layout_constraintEnd_toEndOf="@+id/number_money_to_spend_today_calculated_plaintext_to_edit_activity_daily"
+        app:layout_constraintStart_toStartOf="@+id/number_money_to_spend_today_calculated_plaintext_to_edit_activity_daily"
+        app:layout_constraintTop_toBottomOf="@+id/number_money_to_spend_today_calculated_plaintext_to_edit_activity_daily" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
